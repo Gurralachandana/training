@@ -1,0 +1,15 @@
+installation of virtualenv.
+and we added requirements.txt file
+cd "C:\Users\GURRALA CHANDANA\OneDrive\Pictures\Desktop\flask"
+
+pip install virtualenv
+virtualenv venv
+
+
+dir
+.\venv\Scripts\activate
+
+pip install flask
+pip freeze
+pip install -r requirements.txt
+(venv) (myenv) C:\Users\GURRALA CHANDANA\OneDrive\Pictures\Desktop\flask>pip freeze > requirements.txt
