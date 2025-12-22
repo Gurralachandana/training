@@ -1,0 +1,58 @@
+clone-download the repository into local system.
+fork-coping the repository into GitHub account
+pull request: if there is a repository, we can change the changes in repository.
+it is a way to include the changes which we made in another ower repository
+
+AI>DATABASE+ALGORITHMS
+3 TYPES OF AI
+1)Narrow AI
+2)General AI
+3)Superintelligence
+
+data types-int, float, tuple, dic, Boolean, list, complex, string.
+int 10,5
+float-1.6,7.8
+complex-1+6i
+
+sequence:
+str-"hi"
+list-[1,2,3,"a"]
+tuple-(1,2,"a")
+range-range(8)
+
+mapping type:
+dict-{"name"-"chandana","age":19}
+
+set-{1,2,3}
+frozenset-frozenset([1,2,3])
+
+bool-true,false
+
+binary type:
+byte --- immutable --- 1byte=8bits 8bits=1byte
+bytearray --- mutable
+memoryview
+
+Nonetype:
+nonetype:none
+
+
+request library-3rd party library
+to interact with library we use request.
+url library is bold library.
+it is used in http.
+
+GET → Fetch data
+
+POST → Create data
+
+PUT → Update data
+
+DELETE → Delete data
+
+parameters are the variables listed.
+Arguments are the actual values passed to the function.
+
+
+pip install requests
+import requests
