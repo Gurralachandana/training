@@ -1,0 +1,9 @@
+To run the app.py 
+we installed some packages after activating env file
+-- activated env file using env\Scripts\activate
+--pip install openai
+--pip install google-generativeai
+--pip install dotenv
+--pip install streamlit
+--pip install huggingface_hub
+--streamlit run app.py
