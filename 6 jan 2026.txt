@@ -1,0 +1,137 @@
+To run the app.py 
+we installed some packages after activating env file
+-- activated env file using env\Scripts\activate
+--pip install openai
+--pip install google-generativeai
+--pip install dotenv
+--pip install streamlit
+--pip install huggingface_hub
+--streamlit run app.py
+->A thread is a small path of execution inside a program.
+->An attribute is a variable that belongs to a class or object.
+
+utils/parallel.py:-
+
+from concurrent.futures import ThreadPoolExecutor
+from models.chatgpt_model import chatgpt_response
+from models.gemini_model import gemini_response
+from models.llama_model import llama_response
+def run_parallel(prompt:str)->dict:
+    results={}
+    with ThreadPoolExecutor(max_workers=3)as executor:
+        futures={
+            "ChatGPT":executor.submit(chatgpt_response,prompt),
+            "Gemini":executor.submit(gemini_response,prompt),
+            "LLAMA":executor.submit(llama_response,prompt),
+        }
+        for model, future in futures.items():
+            try:
+                results[model]=future.result()
+            except Exception as e:
+                results[model]=f"Error:{str(e)}"
+    return results
+
+->parallel execution- it executes multiple programs at a time.
+->ThreadPoolExecutor- it allows you to run multiple functions simultaneously using threads.
+run_parallel- 
+->with- it ensures threads close automatically after use.
+->dict- it should return response in dictionary.
+
+->with ThreadPoolExecutor(max_workers=3) as executor:
+Creates a thread pool with 3 worker threads.
+
+->futures = {
+    "ChatGPT": executor.submit(chatgpt_response, prompt),
+    "Gemini": executor.submit(gemini_response, prompt),
+    "LLAMA": executor.submit(llama_response, prompt),
+}
+-"All three models start executing at the same time".
+-futures-variable-it has only memory address.
+to start a thread we are using executor.submit.
+
+->for model, future in futures.items():
+model-key
+future-value
+items- key + value
+result- to get in text format.
+
+->except Exception as e:
+    result[model] = f"Error:{str(e)}"
+-If any model fails (API error, timeout, etc.)
+Saves the error message instead of crashing the program.
+
+-> The .env file is used to store environment variables.
+
+
+utils/report.py:
+
+import pandas as pd
+import os 
+from datetime import datetime
+
+def generate_report(prompt: str, responses: dict):
+    os.makedirs("data/comparison_reports",exist_ok=True)
+
+    rows = []
+    for model, output in responses.items():
+        rows.append({
+            "Model":model,
+            "Prompt":prompt,
+            "Response":output,
+            "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        })
+    df = pd.DataFrame(rows)
+    df.to_csv("data/comparison_reports/report.csv", index=False)
+
+    return "data/comparison_reports/report.csv"
+
+
+->pandas: used for data manipulation and used to create and save tabular data.
+->os- used to create directories.
+->datetime → used to add the current date and time.
+->os.makedirs("data/comparison_reports", exist_ok=True)
+Creates the folder if it does not already exist.
+Prevents error if the folder already exists.
+
+->In pandas, to create a table we need dict {} in the  list[] like [{}].
+->items- key+value.
+->to create a table by adding new values in the list we used "append".
+
+->df = pd.DataFrame(rows)
+"Converts list of dictionaries into a table."
+first list of dictionaries is in rows.
+
+->df.to_csv("data/comparison_reports/report.csv", index=False)
+to_csv- to convert into a file like .csv
+
+
+app.py:
+
+->from dotenv import load_dotenv
+load_dotenv()
+"Loads variables from .env file"
+
+->streamlit - UI framework
+
+->prompt = st.text_area(
+    "Enter your prompt",
+    height=150,
+    placeholder="Explain Python decorators with an example"
+)
+"Large text box for user input".
+
+->if st.button(" Compare Models"):
+Runs the comparison when clicked.
+
+
+
+
+
+
+
+
+
+
+
+
+

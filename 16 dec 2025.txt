@@ -1,0 +1,146 @@
+python --version
+python -m venv venv
+venv\Scripts\activate
+pip install flask requests python-dotenv
+python app1.py
+
+
+from flaskmysqldb import MySQL
+pip install flask-mysqldb
+pip install mysql-connector-python
+
+
+
+for sql in cmd
+"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p
+mysql> use training
+Database changed
+mysql> CREATE TABLE registration (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     username VARCHAR(50),
+    ->     email VARCHAR(100),
+    ->     password VARCHAR(100)
+    -> ); 
+
+
+
+app1.py  
+
+import requests
+import os
+import mysql.connector
+from dotenv import load_dotenv
+from flask import Flask, render_template, request, session, redirect, url_for
+from flask_mysqldb import MySQL
+
+
+load_dotenv()
+
+API_KEY = os.getenv("NINJA_API_KEY")
+
+if not API_KEY:
+    raise ValueError("API key not found. Check your .env file.")
+
+API_URL = "https://api.api-ninjas.com/v1/quotes"
+
+headers = {
+    "X-Api-Key": API_KEY
+}
+
+app = Flask(__name__)
+app.secret_key = "secret123"   
+
+con = mysql.connector.connect(
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_DATABASE")
+)
+cursor = con.cursor()
+
+def generate_ai_quote():
+    response = requests.get(API_URL, headers=headers)
+    data = response.json()
+
+    if isinstance(data, list) and len(data) > 0:
+        return data[0]["quote"], data[0]["author"]
+    else:
+        return "No quote received", "Unknown"
+
+@app.route("/")
+def index():
+    quote, author = generate_ai_quote()
+    return render_template("index.html", quote=quote, author=author)
+
+@app.route("/home")
+def home():
+    if "user" not in session:
+        return redirect(url_for("login"))
+
+    return render_template("home.html", user=session["user"])
+
+@app.route("/registration", methods=["GET", "POST"])
+def registration():
+    if request.method == "POST":
+        user = request.form["username"]
+        email = request.form["email"]
+        password = request.form["password"]
+
+        cursor.execute(
+            "INSERT INTO registration (username, email, password) VALUES (%s, %s, %s)",
+            (user, email, password)
+        )
+        con.commit()
+
+        return "Values stored successfully"
+
+    return render_template("registrationpage.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        cursor.execute(
+            "SELECT * FROM registration WHERE email=%s AND password=%s",
+            (email, password)
+        )
+        user = cursor.fetchone()
+
+        if user:
+            session["user"] = user[1]   # username
+            return redirect(url_for("home"))
+        else:
+            return "Invalid email or password "
+
+    return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+    session.pop("user", None)
+    return redirect(url_for("login"))
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+
+
+
+env\Scripts\activate
+pip install virtualenv
+virtualenv env
+
+
+
+
+public → JVM can access it from anywhere
+
+static → JVM can call it without creating an object
+
+void → main does not return any value
+
+main → fixed method name (entry point)
+
+String[] args → command-line arguments
