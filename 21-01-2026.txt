@@ -1,0 +1,66 @@
+NLP:
+->RAG Algorithm
+->NLP is a subfield of artificial intelligence (AI) that helps computers understand and generate human language. In the mid-20th century, NLP was a simple rule-based way to translate text between languages.
+
+LLM:
+->Transformors-tokenization
+->An LLM is a type of AI system that generates human-like text based on vast amounts of training data.
+->These models, which evolved from earlier machine learning models and algorithms, use complex structures called transformers to process and produce language.
+
+
+encoder:
+encoder with take some input and predict the next word.
+->Understands the input
+->Extracts features
+->Builds context
+->BART MODEL- It will predict the example but not exactly the next word.
+decoder:
+A decoder generates new text based on the encoded information.
+decoder will predict the future questions
+->Predicts the next word/token
+->Generates output
+->Creates sentences
+
+
+Encoder: Reads and understands the input.
+Does not predict the next word.
+Used for text understanding tasks.
+
+Decoder: Generates new text using context.
+Predicts the next word one by one.
+Used for text generation tasks.
+
+Pre-training = learns general learning
+Fine-tuning = learns task-specific learning.
+Pre-training gives a model general understanding of language.
+fine-tuning specializes it for a specific task.
+
+Pre-training/fine-tuning
+GPT (pre-trained)
+BERT (pre-trained)
+LLaMA
+
+Decoder/Encoder
+
+GPT	 Decoder-only   -Best for text generation
+BERT	 Encoder-only   -Best for understanding tasks
+LLaMA	 Decoder-only   -Best for generation
+
+model           pre-tra   fine-tu         Encoder/Decoder
+GPT              Yes	   Yes (RLHF)	   Decoder-only
+BERT	         Yes	   Yes	           Encoder-only
+LLaMA	         Yes	   Yes	           Decoder-only
+Grok	         Yes	   Yes	           Decoder-only
+Gemini	         Yes	   Yes	           Decoder-only
+Claude	         Yes	   Yes	           Decoder-only
+PaLM	         Yes	   Yes	           Decoder-only
+T5	         Yes	   Yes	           Encoder–Decoder
+BART	         Yes	   Yes	           Encoder–Decoder
+
+
+
+
+
+
+
+chatbot developing using openai api-key-assignment 20/01/2026  git deploy also

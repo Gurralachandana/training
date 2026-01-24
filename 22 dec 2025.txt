@@ -1,0 +1,154 @@
+HTML Basics
+
+Structure of an HTML page
+
+Use of tags:
+
+<!DOCTYPE html>
+
+<html>, <head>, <title>, <body>
+
+<h1>, <p>
+
+Created a simple HTML page with heading and paragraph
+
+Flask Introduction
+
+Flask is a Python web framework
+
+Used to build web applications
+
+Installed Flask using pip
+
+ Creating a Flask App
+
+Created a Flask application using:
+
+from flask import Flask
+app = Flask(__name__)
+
+
+Ran Flask server using app.run()
+
+ Flask Routing
+
+Learned how to create routes using @app.route()
+
+Example:
+
+@app.route('/home')
+def home():
+    return "This is Chandana"
+
+Rendering HTML in Flask
+
+Used render_template() to connect HTML with Flask
+
+Learned that HTML files must be inside a templates folder
+
+
+
+app.py:
+import requests
+import os
+from dotenv import load_dotenv
+from flask import Flask, render_template
+
+load_dotenv()
+
+API_KEY = os.getenv("NINJA_API_KEY")
+
+if not API_KEY:
+    raise ValueError("API key not found. Check your .env file.")
+
+API_URL = "https://api.api-ninjas.com/v1/quotes"
+
+headers = {
+    "X-Api-Key": API_KEY
+}
+
+app = Flask(__name__)
+
+def generate_ai_quote():
+    response = requests.get(API_URL, headers=headers)
+    data = response.json()
+
+    if isinstance(data, list) and len(data) > 0:
+        quote = data[0]["quote"]
+        author = data[0]["author"]
+        return quote, author
+    else:
+        return "No quote received", "Unknown"
+
+@app.route("/")
+def home():
+    quote, author = generate_ai_quote()
+    return render_template(
+        "index.html",
+        quote=quote,
+        author=author
+    )
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+created a template folder. inside the folder we created a index.html file
+
+index.html:\
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Quote Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #f4f4f4;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            width: 60%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1>🤖 AI Quote Generator</h1>
+
+    <p id="quote" style="font-size:20px;">"{{ quote }}"</p>
+    <p id="author"><b>— {{ author }}</b></p>
+
+    <br>
+    <button onclick="getNewQuote()">Generate New Quote</button>
+</div>
+
+<script>
+    async function getNewQuote() {
+        try {
+            const response = await fetch('/quote');
+            const data = await response.json();
+
+            document.getElementById('quote').innerText = `"${data.quote}"`;
+            document.getElementById('author').innerText = `— ${data.author}`;
+        } catch (error) {
+            document.getElementById('quote').innerText = "Failed to fetch quote!";
+            document.getElementById('author').innerText = "";
+        }
+    }
+</script>
+
+</body>
+</html>
