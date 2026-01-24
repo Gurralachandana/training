@@ -1,0 +1,28 @@
+24-01-2026:-
+
+about gan_engine.py
+->we used python library.
+->PIL:-Pillow
+we used pillow, when we working with images or to modify images.
+
+model.py:-
+__init__:-
+->Automatically called when an object is created.
+self parameter:
+->To access instance variables
+->To call instance methods
+super keyword:
+->used to access parent class variables, methods, and constructors from a child class.
+nc:- number of colours in image.
+ngf:- number of network generators value.
+nz = number of random noise vectors.
+
+4,1,0:- values for styling
+bias=false:- the image should not change or donot increase size.
+
+ReLU: activation fnc
+
+
+
+to run :-uvicorn app.main:app --reload
+
