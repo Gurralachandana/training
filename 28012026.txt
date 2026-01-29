@@ -1,0 +1,26 @@
+28/01/2026
+Normalization :-
+Normalization in NLP means cleaning and standardizing text so that different forms of the same word or text are treated consistently by a model.
+Tokens:
+Tokens are the smallest units of text that an NLP model works with.
+Tokenization = breaking text into tokens.
+Tokenization means breaking text into smaller units called tokens.
+
+Levenshtein Distance:
+
+Levenshtein Distance is a measure of how different two strings are by counting the minimum number of edits needed to change one string into another.
+
+he released 3 operations that is insert,delete and substation.
+
+Edit distance:Edit Distance measures how many operations are needed to convert one word into another.
+->Minimum operations to convert one string into another
+
+
+Dynamic Programming (DP) in NLP
+
+Dynamic Programming is a technique to solve problem.
+
+-Breaking them into smaller subproblems
+
+-Storing results to avoid recomputation
+->Efficient method to compute edit distance
