@@ -1,0 +1,45 @@
+29-01-2026
+
+EDIT DISTANCE:-
+count minimum number of operations.
+for insert , delete,substution the cost is 1.
+EDIT DISTANCE PSEUDOCODE:-
+
+dynamic approach we will use for shortest distance or for minimum number of operations.
+
+for insert we use d[i][j-1]  -column will decrease.
+for delete we use d[i-1][j]  -row will  decrease.
+for sub we use d[i-1][j-1] 
+
+
+PSEUDOCODE:
+
+Function edit_distance(Source,Target):
+m=LENGTH(Source)
+n=LENGTH(Target)
+
+d(n+1)(m+1) #no of rows no of columns
+for each row i to n:
+d[i][0]=i
+for each row j to m:
+d[j][0]=j
+
+if source =! Dict:
+for each row i to n+1:
+for each row j to m+1:
+d[i][j]=min(d[i][j-1]+1,d[i-1][j]+1,d[i-1][j-1]+1)
+return d[n][m]
+
+
+code using python:
+def edit_distance(source,target):
+ m=len(source)
+ n=len(target)
+
+d=[[0] *(n + 1) for i in range (m + 1)]
+
+for each row i to n:
+d[i][j]=i
+for
+
+
