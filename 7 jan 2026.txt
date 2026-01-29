@@ -1,0 +1,87 @@
+1. Zero-Shot Prompting
+
+Meaning:
+The model is asked to do a task without any examples.
+
+Example:
+
+“Translate this sentence into English:
+नमस्ते”
+
+Why it’s called zero-shot:
+
+Zero examples are given
+
+Model uses its pre-training knowledge
+
+When to use:
+
+Simple tasks
+
+Common problems
+
+Exam line:
+
+Zero-shot prompting means giving a task to the model without providing any examples.
+
+->2. Few-Shot Prompting
+
+Meaning:
+The model is given a few examples before the actual task.
+
+Example:
+
+Text: “I love this movie.” → Positive
+Text: “This is a bad product.” → Negative
+
+Now classify:
+“The service was okay.”
+
+Why it’s useful:
+
+Improves accuracy
+
+Helps model understand pattern
+
+When to use:
+
+Classification
+
+Formatting tasks
+
+Exam line:
+
+Few-shot prompting provides a small number of examples to guide the model’s output.
+
+->3. Chain-of-Thought Prompting
+
+Meaning:
+The model is encouraged to think step-by-step before answering.
+
+Example:
+
+“Solve this problem step by step:
+If a pen costs ₹10, how much do 5 pens cost?”
+
+Output:
+
+One pen costs ₹10
+5 pens = 10 × 5 = ₹50
+
+Why it’s powerful:
+
+Improves reasoning
+
+Reduces mistakes
+
+When to use:
+
+Math
+
+Logic
+
+Complex reasoning
+
+Exam line:
+
+Chain-of-Thought prompting asks the model to explain intermediate reasoning steps.
